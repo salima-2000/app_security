@@ -4,6 +4,6 @@ import org.springframework.stereotype.Repository;
 
 import com.aseds.inpt.appsecurity.model.Client;
 @Repository
-public interface ClientRepositoire extends JpaRepository<Client,Integer>{
+public interface ClientRepertoire extends JpaRepository<Client,Integer>{
 
 }

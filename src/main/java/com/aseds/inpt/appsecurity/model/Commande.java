@@ -23,11 +23,11 @@ public class Commande implements Serializable {
 	public Commande() {
 		
 	}
-	public Commande(Integer id, String date) {
+	public Commande(Integer id, String date, Client client) {
 		super();
 		this.id = id;
 		this.date = date;
-	
+		this.client=client;	
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

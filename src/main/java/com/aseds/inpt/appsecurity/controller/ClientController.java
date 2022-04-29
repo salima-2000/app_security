@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-import com.aseds.inpt.appsecurity.dao.ClientRepositoire;
+import com.aseds.inpt.appsecurity.dao.ClientRepertoire;
 import com.aseds.inpt.appsecurity.model.Client;
 
 @Controller
 public class ClientController {
 
 	@Autowired
-	private ClientRepositoire clientRepertoire;
+	private ClientRepertoire clientRepertoire;
 	
 		
 	
@@ -40,12 +40,12 @@ public class ClientController {
 	@PostMapping("/clients/nouveau")
 	public String ajouterClient(@RequestParam int id,@RequestParam int age,@RequestParam String nom, @RequestParam String prenom, Model model) {
 		Client nouveauClient=new Client(id,nom,prenom,age);
-		clientRepertoire.save(nouveauClient);
+		clientRepertoire.saveAndFlush(nouveauClient);
 		List<Client> clients=clientRepertoire.findAll();
 		model.addAttribute("clients",clients);
-		Client clientAffiche=clientRepertoire.findById(id).get();
+		Client clientAffiche=clientRepertoire.getById(id);
 		model.addAttribute("clientAffiche",clientAffiche);
-		return "redirect:/clients";
+		return "pages/clients";
 	
 	}
 	@PostMapping("/clients/delete")
@@ -67,9 +67,9 @@ public class ClientController {
 		clientRepertoire.saveAndFlush(clientExistant);
 		List<Client> clients=clientRepertoire.findAll();
 		model.addAttribute("clients",clients);
-		Client clientAffiche=clients.get(0);
+		Client clientAffiche=clientRepertoire.getById(id);
 		model.addAttribute("clientAffiche",clientAffiche);
-		return "redirect:/clients";
+		return "pages/clients";
 	}
 	@GetMapping("/clients/chercher")
 	public String rechercherClient(@RequestParam int recherche, Model model) {
@@ -77,10 +77,7 @@ public class ClientController {
 		model.addAttribute("clients",clients);
 		Client clientAffiche=clientRepertoire.getById(recherche);
 		model.addAttribute("clientAffiche",clientAffiche);
-		return "redirect:/clients";
+		return "pages/clients";
 	}
-	@GetMapping("/filtrer")
-	public String filtrerCommandesParClient() {
-		return "pages/filtrer";
-	}
+
 }

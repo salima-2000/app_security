@@ -36,25 +36,22 @@ border-left: solid grey 1px;
 border-right: solid grey 1px;
 }
 .formulaire{
-    max-width:50%;
+    width:50%;
 	margin-left:auto;
 	margin-right:auto;
 }
 h2{
-    max-width:50%;
+    width:50%;
 	margin-left:auto;
 	margin-right:auto;
+
 }
 .search__input {
-  width: 60%;
+  width: 70%;
   height: 45px;
   background-color: #E5E5E5;
   font-size: 15px;
   color: #575756;
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
-  background-position: 95% center;
   border-radius: 50px;
   border: 0px;
   outline: 0;
@@ -62,11 +59,45 @@ h2{
 
 
 .search__container{
-	margin-left:30%;
+	margin-left:20%;
+	margin-bottom:5%;
 	
 }
+label{
+font-weight:bold;
+}
+#buttonBar{
+    display: flex;
+    justify-content: center;
 
-    </style>
+}
+#btn1{
+margin-right:5%;
+}
+#btn2{
+margin-right:5%;
+}
+.searchButton {
+    float: right;
+    width: 40px;
+    height: 40px;
+    border:0;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.search__input{
+padding-left:5%;
+}
+.search_button{
+background-color:transparent;
+border:0;
+position:relative;
+right:50px;
+}
+ </style>
      
 
 </head>
@@ -78,16 +109,16 @@ h2{
    <div class="formulaire">
    <h2>Gestion des clients</h2>
    <br/>
-   <br/>
+ 
    
     <div class="search__container">
     <form th:action="@{/clients/chercher}">
-     <input  style="padding-left:30px" class="search__input" type="number" name="recherche" placeholder="Rechercher client par son id">
-     <button type="submit" > rechercher</button>
+     <input class="search__input" type="number" name="recherche" placeholder="Rechercher client par son id">
+     <button class="search_button"  type="submit" ><i class="fas fa-search"></i></button>
     </form>
     
      </div>
- <form method="post" th:action="@{/clients/nouveau}">
+ <form method="post" >
   <div class="row mb-3">
     <label for="inputId" class="col-sm-2 col-form-label">Id</label>
     <div class="col-sm-10">
@@ -112,19 +143,11 @@ h2{
       <input th:value="${clientAffiche.getAge}" type="number"  name="age" class="form-control" id="inputAge">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Ajouter</button>
-  </form>
-  <form method="post" th:action="@{/clients/modifier}">
-   <input type="hidden" name="id" th:value="${clientAffiche.getId}" />
-   <input type="hidden" name="nom" th:value="${clientAffiche.getNom}" />
-   <input type="hidden" name="prenom" th:value="${clientAffiche.getPrenom}" />
-   <input type="hidden" name="age" th:value="${clientAffiche.getAge}" />
-  <button type="submit" class="btn btn-secondary">Modifier</button>
-  </form>
-  
-  <form method="post" th:action="@{/clients/delete}">
-   <input type="hidden" name="id" th:value="${clientAffiche.getId}" />
-  <button type="submit" class="btn btn-danger">Supprimer</button>
+  <div id="buttonBar">
+   <button id="btn1" th:formaction="@{/clients/nouveau}" type="submit" class="btn btn-primary">Ajouter</button>
+  <button id="btn2" th:formaction="@{/clients/modifier}" type="submit" class="btn btn-secondary">Modifier</button>
+  <button id="btn3" th:formaction="@{/clients/delete}" type="submit" class="btn btn-danger">Supprimer</button>
+  </div>
   </form>
   
 
