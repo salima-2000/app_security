@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,14 +26,22 @@ public class Client implements Serializable {
 		
 	}
 
+	public Client(Integer id, String nom, String prenom, Integer age,byte[] image) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+		this.image=image;
+	}
 	public Client(Integer id, String nom, String prenom, Integer age) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.age = age;
+		
 	}
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
@@ -41,12 +50,21 @@ public class Client implements Serializable {
 	@Column(nullable= false)
 	private String prenom;
     private Integer age;
-    
+    @Lob
+    private byte[] image;
     @OneToMany(mappedBy="client", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     private List<Commande> commandes;
     
     public List<Commande> getCommandes() {
 		return commandes;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	public void setCommandes(List<Commande> commandes) {

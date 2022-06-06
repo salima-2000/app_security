@@ -23,14 +23,27 @@ public class UploadImageController {
 	    String folder ="C:\\Users\\Perfect PC\\Downloads\\appSecurity\\appSecurity\\src\\main\\resources\\uploads\\";
 	    Path path=Paths.get(folder+ file.getOriginalFilename());
 	    byte[] bytes = file.getBytes();
-	    try {
+	  /*  try {
 	    	 Files.write(path, bytes);
 	 	    httpSession.setAttribute("etat", "succes");	
 	    }catch (Exception e) {
 	    	
 	    	httpSession.setAttribute("etat", "erreur");	
 	    }
-	       
+	       */
+	    String fileName = file.getOriginalFilename();
+		String fe = "";
+		if (fileName.contains(".")) {
+			int i = fileName.lastIndexOf('.');
+			fe = i > 0 ? fileName.substring(i + 1) : "";
+		}
+		if(fe.contains("png") ||fe.contains("PNG") || fe.contains("jpg") ) {
+			 Files.write(path, bytes);
+		 	    httpSession.setAttribute("etat", "succes");	
+		}else {
+			httpSession.setAttribute("etat", "erreur");	
+		}
 		return "redirect:/images";
 	}
+	
 }
