@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th=http://www.thymeleaf.org>
+
+<head>
+<meta charset="UTF-8" />
+<title>Execution de commandes</title>
+</head>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Hind&display=swap');
+
+
+.Card {
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:100px;
+  padding: 1px;
+  border-radius: var(--border-radius);
+  background: linear-gradient(-67deg, rgba(#c8d8e7, .7), rgba(255,255,255,.8));
+  overflow: hidden;
+  box-shadow: 
+    -2px -2px 6px rgba(#fff, .6),
+    2px 2px 12px #c8d8e7;
+  width: 500px;
+}
+
+.CardInner {
+  padding: 16px 16px;
+  background-color: #e2e9f4;
+  border-radius: var(--border-radius);
+}
+
+.container {
+  display: flex;
+}
+
+.Icon {
+  min-width: 46px;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  margin-right: 12px;
+  box-shadow: 
+    -2px -2px 6px rgba(#fff, .6),
+    2px 2px 12px #c8d8e7;
+    
+ 
+}
+
+label {
+  font-family: "Hind", sans-serif;
+  display: block;
+  color: grey;
+  margin-bottom: 12px;
+  background: linear-gradient(45deg, rgba(#6b7b8f, 1), #3c4b66);
+
+}
+
+.InputContainer {
+  width: 100%;
+}
+p{
+margin-left:auto;
+margin-right:auto;
+width:500px;
+color:grey;
+
+
+}
+input {
+  background-color: #e3edf7;
+  padding: 16px 32px;
+  border: none;
+  display: block;
+  outline:0;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+
+  -webkit-appearance: none;
+  transition: all 240ms ease-out;
+  width: 100%;
+  
+ 
+
+}
+  
+.InputContainer {
+  --top-shadow: inset 1px 1px 3px #c5d4e3, inset 2px 2px 6px #c5d4e3;
+  --bottom-shadow: inset -2px -2px 4px rgba(255,255,255, .7);
+  
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  
+
+}
+button{
+background-color:transparent;
+border:0;
+}
+</style>
+<body>
+
+<form method="post" th:action="@{/pinger}">
+<div class="Card">
+  <div class="CardInner">
+  <label>Veuillez saisir l'adresse IP que vous souhaitez pinger!!!</label>
+  <div class="container">
+    <button type="submit">
+    <div class="Icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#657789" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+    </button>
+    <div class="InputContainer">
+      <input type="text" name="ip" placeholder="ping ..."/>
+    </div>
+  </div>
+ </div>
+</div>
+
+</form>
+<div>
+
+</div>
+<p th:utext="${session.ping}" ></p>
+</body>
+</html>

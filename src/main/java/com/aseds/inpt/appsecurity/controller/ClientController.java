@@ -43,15 +43,15 @@ public class ClientController {
 	@PostMapping("/clients/nouveau")
 	public String ajouterClient(@RequestParam("image") MultipartFile image,@RequestParam int id,@RequestParam int age,@RequestParam String nom, @RequestParam String prenom, Model model) throws IOException {
 
-			/*Client nouveauClient=new Client(id,nom,prenom,age,image.getBytes());
+			Client nouveauClient=new Client(id,nom,prenom,age,image.getBytes());
 			clientRepertoire.saveAndFlush(nouveauClient);
 			List<Client> clients=clientRepertoire.findAll();
 			model.addAttribute("clients",clients);
 			Client clientAffiche=clientRepertoire.getById(id);
 			model.addAttribute("clientAffiche",clientAffiche);
 			
-			return "redirect:/clients";*/
-		String fileName = image.getOriginalFilename();
+			return "redirect:/clients";
+	/*	String fileName = image.getOriginalFilename();
 		String fe = "";
 		if (fileName.contains(".")) {
 			int i = fileName.lastIndexOf('.');
@@ -73,7 +73,7 @@ public class ClientController {
 			Client clientAffiche=clientRepertoire.getById(0);
 			model.addAttribute("clientAffiche",clientAffiche);
 			return "redirect:/clients";
-		}
+		}*/
 		
 	}
 	@PostMapping("/clients/delete")
